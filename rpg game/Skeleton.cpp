@@ -1,45 +1,40 @@
+
 #include "Skeleton.h"
 #include <iostream>
-#include "Math.h"
 
 void Skeleton::Initialize()
 {
-	boundingRectangle.setFillColor(sf::Color::Transparent);
-	boundingRectangle.setOutlineThickness(1);
-	boundingRectangle.setOutlineColor(sf::Color::Red);
-	size = sf::Vector2i(64, 64);
 }
 
 void Skeleton::Load()
 {
-	sprite.setTexture(texture);
 	texture.loadFromFile("Assets/Player/Textures/spritesheet.png");
-	int Xýndex = 0;
-	int Yýndex = 2;
-	sprite.setPosition(1700, 800);
-	
 
-	sprite.setTextureRect(sf::IntRect(Xýndex * 64, Yýndex * 64, 64, 64));
-	sprite.scale(2, 2);
-	boundingRectangle.setSize(sf::Vector2f(size.x * sprite.getScale().x, size.y * sprite.getScale().y));
+		sprite.setTexture(texture);
+		sprite.setPosition(sf::Vector2f(1600, 700));
+
+		int XIndex = 0;
+		int YIndex = 2;
+
+		sprite.setTextureRect(sf::IntRect(XIndex * 64, YIndex * 64, 64, 64));
+		sprite.scale(sf::Vector2f(3, 3));
+	
 }
 
-void Skeleton::Update(float deltaTime)
+void Skeleton::Update()
 {
-	boundingRectangle.setPosition(sprite.getPosition());
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
-		sprite.move(0, -1 * skeletonSpeed * deltaTime);
+		sprite.move(0, -0.5);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-		sprite.move(0, 1 * skeletonSpeed * deltaTime);
+		sprite.move(0, 0.5);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-		sprite.move(1 * skeletonSpeed * deltaTime, 0);
+		sprite.move(0.5, 0);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-		sprite.move(-1 * skeletonSpeed * deltaTime, 0);
-
+		sprite.move(-0.5, 0);
 }
 
 void Skeleton::Draw(sf::RenderWindow& window)
 {
 	window.draw(sprite);
-	window.draw(boundingRectangle);
 }
+
