@@ -2,7 +2,6 @@
 #include "Player.h"
 #include "Skeleton.h"
 #include<iostream>
-#include"Friend.h"
 
 int main()
 {
@@ -12,7 +11,6 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "RPG GAME", sf::Style::Default);
 	window.setFramerateLimit(360);
 
-	Friend bla;
 	Player player;
 	Skeleton skeleton;
 	sf::Clock clock;
@@ -23,7 +21,6 @@ int main()
 
 	player.Load();
 	skeleton.Load();
-	bla.Load();
 
 
 
@@ -48,7 +45,6 @@ int main()
 		window.clear(sf::Color::Black);
 		player.Draw(window);
 		skeleton.Draw(window);
-		window.draw(bla.sprite);
 
 		window.display();
 
