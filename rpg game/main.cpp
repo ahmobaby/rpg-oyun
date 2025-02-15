@@ -3,51 +3,52 @@
 #include "Skeleton.h"
 #include<iostream>
 
-#include "Math.h"
-
-
-
 int main()
 {
+
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 8;
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "RPG Game", sf::Style::Default, settings);
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "RPG GAME", sf::Style::Default);
+	window.setFramerateLimit(360);
 
 	Player player;
 	Skeleton skeleton;
-
-	
-	
+	sf::Clock clock;
 
 	player.Initialize();
 	skeleton.Initialize();
-	
-	
 
-	
+
 	player.Load();
 	skeleton.Load();
 
-	
+
+
 
 	while (window.isOpen())
 	{
 		sf::Event event;
+
+
+		sf::Time deltaTimeTimer = clock.restart();
+		float deltaTime = deltaTimeTimer.asMilliseconds();
+
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
 
-		skeleton.Update();
-		player.Update(skeleton);
-
+		player.Update(deltaTime,skeleton);
+		skeleton.Update(deltaTime);
+		 
 		window.clear(sf::Color::Black);
-		skeleton.Draw(window);
 		player.Draw(window);
-		
+		skeleton.Draw(window);
+
 		window.display();
+
 	}
 
-	return 0;
+	return  0;
 }
