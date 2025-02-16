@@ -65,10 +65,6 @@ void Player::Update(float deltaTime, Skeleton& skeleton)
 		std::cout << "Collisionnnn!! " << std::endl;
 	}
 
-
-
-
-
 }
 
 void Player::Draw(sf::RenderWindow& window)

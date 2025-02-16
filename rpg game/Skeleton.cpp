@@ -42,4 +42,5 @@ void Skeleton::Draw(sf::RenderWindow& window)
 {
 	window.draw(sprite);
 	window.draw(boundingRectangle);
+	
 }

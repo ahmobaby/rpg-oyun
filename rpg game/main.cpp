@@ -1,7 +1,9 @@
 #include <SFML/Graphics.hpp>
+#include<iostream>
+
 #include "Player.h"
 #include "Skeleton.h"
-#include<iostream>
+#include"FrameRate.h"
 
 int main()
 {
@@ -11,27 +13,37 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "RPG GAME", sf::Style::Default);
 	window.setFramerateLimit(360);
 
+	sf::Text name1;
+	sf::Font font;
+	
+
+
+	
+
+
+	FrameRate fps;
 	Player player;
 	Skeleton skeleton;
 	sf::Clock clock;
 
 	player.Initialize();
 	skeleton.Initialize();
+	fps.Initialize();
 
 
 	player.Load();
 	skeleton.Load();
-
-
+	fps.Load();
 
 
 	while (window.isOpen())
 	{
 		sf::Event event;
-
-
+		
 		sf::Time deltaTimeTimer = clock.restart();
-		float deltaTime = deltaTimeTimer.asMilliseconds();
+		double deltaTime = deltaTimeTimer.asMicroseconds() / 1000.0;
+		
+		
 
 		while (window.pollEvent(event))
 		{
@@ -41,10 +53,14 @@ int main()
 
 		player.Update(deltaTime, skeleton);
 		skeleton.Update(deltaTime);
+		fps.Update(deltaTime);
+		
 
 		window.clear(sf::Color::Black);
 		player.Draw(window);
 		skeleton.Draw(window);
+		fps.Draw(window);
+		
 
 		window.display();
 
